@@ -1,0 +1,26 @@
+---
+- hosts: all
+  user: freebsd
+  sudo: yes
+  gather_facts: no
+  vars:
+    ansible_python_interpreter: /usr/local/bin/python2.7
+  tasks:
+    # task for installing Python on a host via raw
+    - name: install Python
+      raw: env ASSUME_ALWAYS_YES=YES pkg install Python
+
+    - name: ensure vim is at the latest version
+      pkgng: name=vim state=present
+
+    - name: ensure weechat is at the latest version
+      pkgng: name=weechat state=present
+
+    - name: ensure vagrant is at the latest version
+      pkgng: name=vagrant state=present
+
+    - name: ensure znc is at the latest version
+      pkgng: name=znc state=present
+
+    - name: ensure tmux is at the latest version
+      pkgng: name=tmux state=present
